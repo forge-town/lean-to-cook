@@ -1,0 +1,319 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "correspondence": {
+      "type": "string",
+      "const": "checked-mapping-only"
+    },
+    "sourceWorkbench": {
+      "type": "string",
+      "const": "presentation-only"
+    },
+    "recipes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "recipeId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "recipe-execution",
+              "generic-four-stage"
+            ]
+          },
+          "namespace": {
+            "type": "string",
+            "pattern": "^LeanToCook(?:\\.[A-Za-z][A-Za-z0-9_]*)+$"
+          },
+          "module": {
+            "type": "string",
+            "minLength": 1
+          },
+          "plan": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+          },
+          "steps": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^step-[0-9]{2}$"
+                },
+                "sequence": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "formalAction": {
+                  "type": "string",
+                  "enum": [
+                    "washTomato",
+                    "peelTomato",
+                    "cutTomato",
+                    "mixEgg",
+                    "heatPan",
+                    "cookEgg",
+                    "reserveEgg",
+                    "cookTomato",
+                    "combine",
+                    "season",
+                    "plate",
+                    "blanchWings",
+                    "marinateWings",
+                    "searWings",
+                    "boilCola",
+                    "seasonWings",
+                    "simmerWings",
+                    "glazeWings",
+                    "plateWings",
+                    "washVegetables",
+                    "cutVegetables",
+                    "mixSauce",
+                    "heatFryingOil",
+                    "fryPotato",
+                    "reservePotato",
+                    "fryEggplant",
+                    "reserveEggplant",
+                    "fryPepper",
+                    "thickenSauce",
+                    "combineThreeFresh",
+                    "plateThreeFresh",
+                    "prepareShrimp",
+                    "mixShrimpSauce",
+                    "heatShrimpOil",
+                    "panFryShrimp",
+                    "butterSauceShrimp",
+                    "reduceShrimpSauce",
+                    "plateShrimp",
+                    "cutSoupIngredients",
+                    "blanchRibs",
+                    "searRibs",
+                    "addBoilingWater",
+                    "simmerCorn",
+                    "simmerCarrot",
+                    "seasonSoup",
+                    "plateSoup",
+                    "cutAromatics",
+                    "scoreMarinateFish",
+                    "rackFish",
+                    "heatSteamer",
+                    "steamFish",
+                    "transferFish",
+                    "seasonFish",
+                    "heatFinishingOil",
+                    "pourHotOilPlate",
+                    "prepareCatalogCase",
+                    "processCatalogCase",
+                    "finishCatalogCase",
+                    "plateCatalogCase"
+                  ]
+                },
+                "requires": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "tomato.present",
+                      "tomato.clean",
+                      "tomato.peeled",
+                      "tomato.cubed",
+                      "egg.present",
+                      "egg.mixed",
+                      "pan.hot",
+                      "heat.on",
+                      "heat.off",
+                      "egg.halfCooked",
+                      "egg.reserved",
+                      "tomato.soft",
+                      "dish.combined",
+                      "dish.seasoned",
+                      "dish.plated",
+                      "wings.present",
+                      "wings.blanched",
+                      "wings.marinated",
+                      "wings.seared",
+                      "cola.boiling",
+                      "cola.reduced",
+                      "wings.glazed",
+                      "potato.present",
+                      "eggplant.present",
+                      "pepper.present",
+                      "vegetables.clean",
+                      "vegetables.cut",
+                      "fryingOil.hot",
+                      "potato.fried",
+                      "potato.reserved",
+                      "eggplant.fried",
+                      "eggplant.reserved",
+                      "pepper.fried",
+                      "components.reserved",
+                      "sauce.mixed",
+                      "sauce.thickened",
+                      "shrimp.present",
+                      "shrimp.prepared",
+                      "shrimp.seared",
+                      "shrimp.buttered",
+                      "shrimp.sauceReduced",
+                      "oil.hot",
+                      "ribs.present",
+                      "corn.present",
+                      "carrot.present",
+                      "soupIngredients.cut",
+                      "ribs.blanched",
+                      "ribs.seared",
+                      "broth.boiling",
+                      "corn.simmered",
+                      "carrot.simmered",
+                      "soup.simmered",
+                      "fish.present",
+                      "aromatics.cut",
+                      "fish.marinated",
+                      "fish.racked",
+                      "steamer.hot",
+                      "fish.steamed",
+                      "fish.transferred",
+                      "fish.finished",
+                      "case.present",
+                      "case.prepared",
+                      "case.processed",
+                      "case.finished"
+                    ]
+                  }
+                },
+                "effects": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "predicate": {
+                        "type": "string",
+                        "enum": [
+                          "tomato.present",
+                          "tomato.clean",
+                          "tomato.peeled",
+                          "tomato.cubed",
+                          "egg.present",
+                          "egg.mixed",
+                          "pan.hot",
+                          "heat.on",
+                          "heat.off",
+                          "egg.halfCooked",
+                          "egg.reserved",
+                          "tomato.soft",
+                          "dish.combined",
+                          "dish.seasoned",
+                          "dish.plated",
+                          "wings.present",
+                          "wings.blanched",
+                          "wings.marinated",
+                          "wings.seared",
+                          "cola.boiling",
+                          "cola.reduced",
+                          "wings.glazed",
+                          "potato.present",
+                          "eggplant.present",
+                          "pepper.present",
+                          "vegetables.clean",
+                          "vegetables.cut",
+                          "fryingOil.hot",
+                          "potato.fried",
+                          "potato.reserved",
+                          "eggplant.fried",
+                          "eggplant.reserved",
+                          "pepper.fried",
+                          "components.reserved",
+                          "sauce.mixed",
+                          "sauce.thickened",
+                          "shrimp.present",
+                          "shrimp.prepared",
+                          "shrimp.seared",
+                          "shrimp.buttered",
+                          "shrimp.sauceReduced",
+                          "oil.hot",
+                          "ribs.present",
+                          "corn.present",
+                          "carrot.present",
+                          "soupIngredients.cut",
+                          "ribs.blanched",
+                          "ribs.seared",
+                          "broth.boiling",
+                          "corn.simmered",
+                          "carrot.simmered",
+                          "soup.simmered",
+                          "fish.present",
+                          "aromatics.cut",
+                          "fish.marinated",
+                          "fish.racked",
+                          "steamer.hot",
+                          "fish.steamed",
+                          "fish.transferred",
+                          "fish.finished",
+                          "case.present",
+                          "case.prepared",
+                          "case.processed",
+                          "case.finished"
+                        ]
+                      },
+                      "value": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "predicate",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "constructor": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+                }
+              },
+              "required": [
+                "id",
+                "sequence",
+                "formalAction",
+                "requires",
+                "effects",
+                "constructor"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "recipeId",
+          "scope",
+          "namespace",
+          "module",
+          "plan",
+          "steps"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "correspondence",
+    "sourceWorkbench",
+    "recipes"
+  ],
+  "additionalProperties": false
+}

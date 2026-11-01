@@ -1,0 +1,17 @@
+{
+  "name": "@repo/lean-proofs",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./package.json": "./package.json",
+    "./*.lean": "./LeanToCook/*.lean",
+    "./source-proof-path": "./bridge/sourceProofPath.ts"
+  },
+  "scripts": {
+    "build": "lake build",
+    "check-types": "lake build",
+    "lint": "lake build",
+    "quality": "lake build",
+    "test": "lake build"
+  }
+}

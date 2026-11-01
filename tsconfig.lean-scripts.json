@@ -1,0 +1,22 @@
+{
+  "extends": "./packages/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "types": [
+      "bun"
+    ],
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": [
+    "scripts/lean-*.test.ts",
+    "scripts/generate-lean-metadata.ts",
+    "scripts/generate-source-recipe-proofs.ts",
+    "scripts/check-lean-contracts.ts",
+    "scripts/check-source-recipe-coverage.ts"
+  ]
+}

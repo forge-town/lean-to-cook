@@ -1,0 +1,526 @@
+{
+  "root": "lean-proof-package",
+  "definitions": [
+    {
+      "key": "lean-proof-package",
+      "definition": {
+        "name": "Lean Proof Package",
+        "purpose": "Source contract for packages/lean-proofs, checked against Git-managed files using the local Anatomy CLI. Separate Core, Theories, handwritten Recipes, generic CatalogCases, Generated certificates, DataContracts and Verification. Recipe directories compose the reusable Lean Recipe Unit. verification/ and bridge/ hold schemas, proof scope, provenance and frontend action correspondence. Build/dependency caches are excluded by Git. This contract checks filesystem shape only; check-lean-contracts checks import layers, declared targets, allowed axioms and action-plan equality.",
+        "structure": {
+          "rootMode": "contents",
+          "bindings": {
+            "Recipe": {
+              "format": "PascalCase"
+            },
+            "Theory": {
+              "format": "PascalCase"
+            },
+            "Category": {
+              "format": "PascalCase"
+            },
+            "Certificate": {
+              "format": "PascalCase"
+            }
+          },
+          "defaultPolicies": {
+            "missingRequired": "block",
+            "unexpectedEntry": "block",
+            "nameMismatch": "block",
+            "nestingMismatch": "block"
+          },
+          "root": {
+            "children": [
+              {
+                "id": "cbf17e67-b3d6-44a5-afbd-3d0fa70071ba",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "package.json"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "fbac79b1-6b48-4144-88cd-eab460f9bb98",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "lakefile.lean"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "fc2ad5bc-9bc0-4edc-90ce-a65bcc42f00f",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "lake-manifest.json"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "ec5eeb59-3ffd-433c-a883-90058f53a33e",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "lean-toolchain"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "041d0cf8-7a0b-43a6-aa52-6459c30a15ae",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "LeanToCook.lean"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "3f4eff39-6393-4d40-9ecd-1982f6f26e17",
+                "kind": "directory",
+                "name": {
+                  "type": "literal",
+                  "value": "LeanToCook"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {},
+                "children": [
+                  {
+                    "id": "99e00d4d-fd2d-4630-ba44-3472e0afb4de",
+                    "kind": "directory",
+                    "name": {
+                      "type": "literal",
+                      "value": "Core"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {},
+                    "children": [
+                      {
+                        "id": "e343749a-f752-4c7d-92de-960349a38590",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Execution.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "99dc9570-da8e-43c1-aabc-868d998b8ea4",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Quantities.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "ae7c7add-dbcf-40a9-a4d1-cd13226e0adb",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "SourceRecipe.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      }
+                    ]
+                  },
+                  {
+                    "id": "03ef0fa5-b6a0-4714-a273-4a612fc17021",
+                    "kind": "directory",
+                    "name": {
+                      "type": "literal",
+                      "value": "Theories"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {},
+                    "children": [
+                      {
+                        "id": "7d594bc2-a933-4066-8b8a-4df3e04e4e3a",
+                        "kind": "file",
+                        "name": {
+                          "type": "placeholder",
+                          "value": "<Theory>.lean"
+                        },
+                        "quantity": "one_or_more",
+                        "policyOverrides": {}
+                      }
+                    ]
+                  },
+                  {
+                    "id": "247f0520-5003-4f2c-b97c-0d11ff161ca5",
+                    "kind": "directory",
+                    "name": {
+                      "type": "literal",
+                      "value": "Recipes"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {},
+                    "children": [
+                      {
+                        "id": "fdec1fb7-00f4-45f6-a4b0-c4b0748a56d5",
+                        "kind": "composition",
+                        "quantity": "one_or_more",
+                        "policyOverrides": {},
+                        "ref": "lean-recipe-unit"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "f611b6a1-23e5-4659-ba87-0b81d534e156",
+                    "kind": "directory",
+                    "name": {
+                      "type": "literal",
+                      "value": "CatalogCases"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {},
+                    "children": [
+                      {
+                        "id": "8164e6fd-5363-4396-b9b0-a1cdc48c53a6",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Model.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "54b27ef5-514f-41f5-8277-d600f73589c3",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Spec.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "69a1e5ec-4f78-4577-86b8-bdc9e64df5c4",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Proofs.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      }
+                    ]
+                  },
+                  {
+                    "id": "378662f0-d211-41b5-aefa-3592e1f8b825",
+                    "kind": "directory",
+                    "name": {
+                      "type": "literal",
+                      "value": "Generated"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {},
+                    "children": [
+                      {
+                        "id": "555f7c34-daa1-4147-b37f-2683195ddd0d",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "SourceCatalog.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "4dd405d5-e069-4548-9ed1-57f24331462a",
+                        "kind": "directory",
+                        "name": {
+                          "type": "literal",
+                          "value": "Sources"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {},
+                        "children": [
+                          {
+                            "id": "c8f02b47-17d1-4ee6-9bc8-79996c17494d",
+                            "kind": "directory",
+                            "name": {
+                              "type": "placeholder",
+                              "value": "<Category>"
+                            },
+                            "quantity": "one_or_more",
+                            "policyOverrides": {},
+                            "children": [
+                              {
+                                "id": "7ffea071-e6df-4133-b590-4fe1c0a1727a",
+                                "kind": "file",
+                                "name": {
+                                  "type": "placeholder",
+                                  "value": "<Certificate>.lean"
+                                },
+                                "quantity": "one_or_more",
+                                "policyOverrides": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "e8378010-122c-4ddf-bff9-d44abf842cd5",
+                    "kind": "directory",
+                    "name": {
+                      "type": "literal",
+                      "value": "DataContracts"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {},
+                    "children": [
+                      {
+                        "id": "32af0b48-7bba-4b95-b1af-fef1906e8197",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "References.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "e888617b-2bc0-4b2c-a2e8-ff9fe04ac9df",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Ingredients.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "2de4c7ea-1c4a-43c3-9e07-c644cc3afbc1",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Recipes.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "c7c10770-12f4-42c9-844c-23c155a6933e",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "Proofs.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      }
+                    ]
+                  },
+                  {
+                    "id": "6de3fcf0-fcc3-4091-ab52-0c91ab65e354",
+                    "kind": "directory",
+                    "name": {
+                      "type": "literal",
+                      "value": "Verification"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {},
+                    "children": [
+                      {
+                        "id": "4aa7c9fa-f1ce-43c4-8505-3353d7a5d84d",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "AppliedTheory.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      },
+                      {
+                        "id": "ef5b9ecf-f9aa-4c15-ac59-840e26642a88",
+                        "kind": "file",
+                        "name": {
+                          "type": "literal",
+                          "value": "CrossRecipe.lean"
+                        },
+                        "quantity": "exactly_one",
+                        "policyOverrides": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "cd8e8b07-c77b-499a-8417-16053480c653",
+                "kind": "directory",
+                "name": {
+                  "type": "literal",
+                  "value": "verification"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {},
+                "children": [
+                  {
+                    "id": "d6cf857f-648d-492b-bb3f-8fef7c1c0cad",
+                    "kind": "file",
+                    "name": {
+                      "type": "literal",
+                      "value": "manifest.json"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {}
+                  },
+                  {
+                    "id": "706abd4e-33de-4a7a-a61b-a756e557f421",
+                    "kind": "file",
+                    "name": {
+                      "type": "literal",
+                      "value": "manifest.schema.json"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {}
+                  }
+                ]
+              },
+              {
+                "id": "1d782d56-0e30-4535-b137-51531661b062",
+                "kind": "directory",
+                "name": {
+                  "type": "literal",
+                  "value": "bridge"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {},
+                "children": [
+                  {
+                    "id": "257a2417-bbd3-4c64-84e9-86fe5a1e6014",
+                    "kind": "file",
+                    "name": {
+                      "type": "literal",
+                      "value": "action-map.json"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {}
+                  },
+                  {
+                    "id": "694d339a-8c62-44b7-bb6b-99e646cc6d21",
+                    "kind": "file",
+                    "name": {
+                      "type": "literal",
+                      "value": "action-map.schema.json"
+                    },
+                    "quantity": "exactly_one",
+                    "policyOverrides": {}
+                  },
+                  {
+                    "kind": "file",
+                    "name": {
+                      "type": "literal",
+                      "value": "sourceProofPath.ts"
+                    },
+                    "quantity": "exactly_one"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "key": "lean-recipe-unit",
+      "definition": {
+        "name": "Lean Recipe Unit",
+        "purpose": "Handwritten Lean recipe directory with PascalCase name, required Model.lean, Spec.lean and Proofs.lean, plus optional nonempty Lemmas/. Model defines recipe state and transitions; Spec defines named propositions; Proofs proves them. Directory checks do not establish file contents or runtime equivalence.",
+        "structure": {
+          "rootMode": "entry",
+          "bindings": {
+            "Recipe": {
+              "format": "PascalCase"
+            },
+            "Lemma": {
+              "format": "PascalCase"
+            }
+          },
+          "defaultPolicies": {
+            "missingRequired": "block",
+            "unexpectedEntry": "block",
+            "nameMismatch": "block",
+            "nestingMismatch": "block"
+          },
+          "root": {
+            "id": "8d597aa9-3efb-4aa9-802d-c5f0fa680c3b",
+            "kind": "directory",
+            "name": {
+              "type": "placeholder",
+              "value": "<Recipe>"
+            },
+            "quantity": "exactly_one",
+            "policyOverrides": {},
+            "children": [
+              {
+                "id": "a7865643-db3e-45a9-91b7-a9becd98a641",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "Model.lean"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "8f44ec88-5686-4355-8c8e-09e4a41f2add",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "Spec.lean"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "920dff3d-c631-49fe-9892-968ddb404075",
+                "kind": "file",
+                "name": {
+                  "type": "literal",
+                  "value": "Proofs.lean"
+                },
+                "quantity": "exactly_one",
+                "policyOverrides": {}
+              },
+              {
+                "id": "25cfef69-dcdf-4722-90d1-e2ddf8b37d59",
+                "kind": "directory",
+                "name": {
+                  "type": "literal",
+                  "value": "Lemmas"
+                },
+                "quantity": "optional",
+                "policyOverrides": {},
+                "children": [
+                  {
+                    "id": "d6979099-cc25-49e2-97f5-331a2b61ff3a",
+                    "kind": "file",
+                    "name": {
+                      "type": "placeholder",
+                      "value": "<Lemma>.lean"
+                    },
+                    "quantity": "one_or_more",
+                    "policyOverrides": {}
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

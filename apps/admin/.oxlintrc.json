@@ -1,0 +1,4 @@
+{
+  "extends": ["../../packages/oxlint-config/.oxlintrc.json"],
+  "ignorePatterns": ["src/**/*.stories.tsx", "src/components/ui/**", "src/routeTree.gen.ts"]
+}

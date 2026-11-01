@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Single job on purpose: `apps/web` depends on `@repo/lean-proofs`, whose only
+  # quality script is `lake build`, and turbo's `quality` task fans out through
+  # `dependsOn: ["^quality"]`. Every quality run therefore needs the Lean
+  # toolchain, so splitting this would just install it twice.
+  verify:
+    name: Proofs, coverage and quality
+    runs-on: ubuntu-latest
+    services:
+      catalog-postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: lean_cook
+          POSTGRES_PASSWORD: catalog-test-only
+          POSTGRES_DB: lean_cook_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U lean_cook -d lean_cook_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://lean_cook:catalog-test-only@127.0.0.1:5432/lean_cook_test
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # The toolchain is ~500MB and the catalog is ~18k lines of generated Lean,
+      # so both the elan install and the .lake build output are cached.
+      - name: Cache Lean toolchain and build output
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            packages/lean-proofs/.lake
+          key: lean-${{ runner.os }}-${{ hashFiles('packages/lean-proofs/lean-toolchain', 'packages/lean-proofs/lake-manifest.json', 'packages/lean-proofs/LeanToCook/**') }}
+          restore-keys: |
+            lean-${{ runner.os }}-
+
+      - name: Install elan
+        run: |
+          if [ ! -x "$HOME/.elan/bin/elan" ]; then
+            curl -sSfL https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain none
+          fi
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - run: bun install --frozen-lockfile
+
+      - name: Migrate isolated catalog test database
+        run: bun packages/db/src/integrations/migrate.ts
+
+      # Guards against a hand-edited or stale SourceCatalog.lean: regenerating it
+      # from the vendored markdown must reproduce the committed file exactly.
+      - name: Verify the generated Lean catalog is reproducible
+        run: |
+          bun run generate-source-proofs --check
+          bun run generate-lean-metadata --check
+          bun run check-anatomy
+          bun run test:lean-architecture
+          bun run check-lean-scripts
+
+      - name: Build Lean proofs
+        run: lake build
+        working-directory: packages/lean-proofs
+
+      - name: Check Lean targets, axioms and frontend action plans
+        run: bun run check-lean-contracts
+
+      - name: Quality (types, lint, format, unit tests)
+        run: bun run quality
+
+      # Re-runs `lake build`; by this point it is a no-op.
+      - name: Check source recipe coverage
+        run: bun run check-source-coverage

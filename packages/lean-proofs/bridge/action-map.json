@@ -1,0 +1,2334 @@
+{
+  "schemaVersion": 1,
+  "correspondence": "checked-mapping-only",
+  "sourceWorkbench": "presentation-only",
+  "recipes": [
+    {
+      "recipeId": "tomato-scrambled-eggs",
+      "scope": "recipe-execution",
+      "namespace": "LeanToCook.TomatoEgg",
+      "module": "LeanToCook.Recipes.TomatoEgg.Model",
+      "plan": "tomatoEggPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "washTomato",
+          "requires": [
+            "tomato.present"
+          ],
+          "effects": [
+            {
+              "predicate": "tomato.clean",
+              "value": true
+            }
+          ],
+          "constructor": "washTomato"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "peelTomato",
+          "requires": [
+            "tomato.clean"
+          ],
+          "effects": [
+            {
+              "predicate": "tomato.peeled",
+              "value": true
+            }
+          ],
+          "constructor": "peelTomato"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "cutTomato",
+          "requires": [
+            "tomato.clean"
+          ],
+          "effects": [
+            {
+              "predicate": "tomato.cubed",
+              "value": true
+            }
+          ],
+          "constructor": "cutTomato"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "mixEgg",
+          "requires": [
+            "egg.present"
+          ],
+          "effects": [
+            {
+              "predicate": "egg.mixed",
+              "value": true
+            }
+          ],
+          "constructor": "mixEgg"
+        },
+        {
+          "id": "step-05",
+          "sequence": 5,
+          "formalAction": "heatPan",
+          "requires": [
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "pan.hot",
+              "value": true
+            }
+          ],
+          "constructor": "heatPan"
+        },
+        {
+          "id": "step-06",
+          "sequence": 6,
+          "formalAction": "cookEgg",
+          "requires": [
+            "heat.on",
+            "pan.hot",
+            "egg.mixed"
+          ],
+          "effects": [
+            {
+              "predicate": "egg.halfCooked",
+              "value": true
+            }
+          ],
+          "constructor": "cookEgg"
+        },
+        {
+          "id": "step-07",
+          "sequence": 7,
+          "formalAction": "reserveEgg",
+          "requires": [
+            "heat.on",
+            "egg.halfCooked"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "egg.reserved",
+              "value": true
+            }
+          ],
+          "constructor": "reserveEgg"
+        },
+        {
+          "id": "step-08",
+          "sequence": 8,
+          "formalAction": "cookTomato",
+          "requires": [
+            "heat.off",
+            "tomato.cubed"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "tomato.soft",
+              "value": true
+            }
+          ],
+          "constructor": "cookTomato"
+        },
+        {
+          "id": "step-09",
+          "sequence": 9,
+          "formalAction": "combine",
+          "requires": [
+            "heat.on",
+            "egg.reserved",
+            "tomato.soft"
+          ],
+          "effects": [
+            {
+              "predicate": "dish.combined",
+              "value": true
+            }
+          ],
+          "constructor": "combine"
+        },
+        {
+          "id": "step-10",
+          "sequence": 10,
+          "formalAction": "season",
+          "requires": [
+            "heat.on",
+            "dish.combined"
+          ],
+          "effects": [
+            {
+              "predicate": "dish.seasoned",
+              "value": true
+            }
+          ],
+          "constructor": "season"
+        },
+        {
+          "id": "step-11",
+          "sequence": 11,
+          "formalAction": "plate",
+          "requires": [
+            "heat.on",
+            "dish.seasoned"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "cola-chicken-wings",
+      "scope": "recipe-execution",
+      "namespace": "LeanToCook.ColaWings",
+      "module": "LeanToCook.Recipes.ColaWings.Model",
+      "plan": "colaWingsPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "blanchWings",
+          "requires": [
+            "wings.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "wings.blanched",
+              "value": true
+            }
+          ],
+          "constructor": "blanchWings"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "marinateWings",
+          "requires": [
+            "heat.on",
+            "wings.blanched"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "wings.marinated",
+              "value": true
+            }
+          ],
+          "constructor": "marinateWings"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "searWings",
+          "requires": [
+            "heat.off",
+            "wings.marinated"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "pan.hot",
+              "value": true
+            },
+            {
+              "predicate": "wings.seared",
+              "value": true
+            }
+          ],
+          "constructor": "searWings"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "boilCola",
+          "requires": [
+            "heat.on",
+            "wings.seared"
+          ],
+          "effects": [
+            {
+              "predicate": "cola.boiling",
+              "value": true
+            }
+          ],
+          "constructor": "boilCola"
+        },
+        {
+          "id": "step-05",
+          "sequence": 5,
+          "formalAction": "seasonWings",
+          "requires": [
+            "heat.on",
+            "cola.boiling"
+          ],
+          "effects": [
+            {
+              "predicate": "dish.seasoned",
+              "value": true
+            }
+          ],
+          "constructor": "seasonWings"
+        },
+        {
+          "id": "step-06",
+          "sequence": 6,
+          "formalAction": "simmerWings",
+          "requires": [
+            "heat.on",
+            "dish.seasoned"
+          ],
+          "effects": [
+            {
+              "predicate": "cola.reduced",
+              "value": true
+            }
+          ],
+          "constructor": "simmerWings"
+        },
+        {
+          "id": "step-07",
+          "sequence": 7,
+          "formalAction": "glazeWings",
+          "requires": [
+            "heat.on",
+            "cola.reduced"
+          ],
+          "effects": [
+            {
+              "predicate": "wings.glazed",
+              "value": true
+            }
+          ],
+          "constructor": "glazeWings"
+        },
+        {
+          "id": "step-08",
+          "sequence": 8,
+          "formalAction": "plateWings",
+          "requires": [
+            "heat.on",
+            "wings.glazed"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plateWings"
+        }
+      ]
+    },
+    {
+      "recipeId": "three-fresh",
+      "scope": "recipe-execution",
+      "namespace": "LeanToCook.ThreeFresh",
+      "module": "LeanToCook.Recipes.ThreeFresh.Model",
+      "plan": "threeFreshPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "washVegetables",
+          "requires": [
+            "potato.present",
+            "eggplant.present",
+            "pepper.present"
+          ],
+          "effects": [
+            {
+              "predicate": "vegetables.clean",
+              "value": true
+            }
+          ],
+          "constructor": "washVegetables"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "cutVegetables",
+          "requires": [
+            "vegetables.clean"
+          ],
+          "effects": [
+            {
+              "predicate": "vegetables.cut",
+              "value": true
+            }
+          ],
+          "constructor": "cutVegetables"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "mixSauce",
+          "requires": [
+            "vegetables.cut"
+          ],
+          "effects": [
+            {
+              "predicate": "sauce.mixed",
+              "value": true
+            }
+          ],
+          "constructor": "mixSauce"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "heatFryingOil",
+          "requires": [
+            "heat.off",
+            "sauce.mixed"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "pan.hot",
+              "value": true
+            },
+            {
+              "predicate": "fryingOil.hot",
+              "value": true
+            }
+          ],
+          "constructor": "heatFryingOil"
+        },
+        {
+          "id": "step-05",
+          "sequence": 5,
+          "formalAction": "fryPotato",
+          "requires": [
+            "heat.on",
+            "fryingOil.hot",
+            "vegetables.cut"
+          ],
+          "effects": [
+            {
+              "predicate": "potato.fried",
+              "value": true
+            }
+          ],
+          "constructor": "fryPotato"
+        },
+        {
+          "id": "step-06",
+          "sequence": 6,
+          "formalAction": "reservePotato",
+          "requires": [
+            "heat.on",
+            "potato.fried"
+          ],
+          "effects": [
+            {
+              "predicate": "potato.reserved",
+              "value": true
+            }
+          ],
+          "constructor": "reservePotato"
+        },
+        {
+          "id": "step-07",
+          "sequence": 7,
+          "formalAction": "fryEggplant",
+          "requires": [
+            "heat.on",
+            "potato.reserved",
+            "vegetables.cut"
+          ],
+          "effects": [
+            {
+              "predicate": "eggplant.fried",
+              "value": true
+            }
+          ],
+          "constructor": "fryEggplant"
+        },
+        {
+          "id": "step-08",
+          "sequence": 8,
+          "formalAction": "reserveEggplant",
+          "requires": [
+            "heat.on",
+            "eggplant.fried"
+          ],
+          "effects": [
+            {
+              "predicate": "eggplant.reserved",
+              "value": true
+            }
+          ],
+          "constructor": "reserveEggplant"
+        },
+        {
+          "id": "step-09",
+          "sequence": 9,
+          "formalAction": "fryPepper",
+          "requires": [
+            "heat.on",
+            "eggplant.reserved",
+            "potato.reserved"
+          ],
+          "effects": [
+            {
+              "predicate": "pepper.fried",
+              "value": true
+            },
+            {
+              "predicate": "components.reserved",
+              "value": true
+            }
+          ],
+          "constructor": "fryPepper"
+        },
+        {
+          "id": "step-10",
+          "sequence": 10,
+          "formalAction": "thickenSauce",
+          "requires": [
+            "heat.on",
+            "sauce.mixed",
+            "components.reserved"
+          ],
+          "effects": [
+            {
+              "predicate": "sauce.thickened",
+              "value": true
+            },
+            {
+              "predicate": "dish.seasoned",
+              "value": true
+            }
+          ],
+          "constructor": "thickenSauce"
+        },
+        {
+          "id": "step-11",
+          "sequence": 11,
+          "formalAction": "combineThreeFresh",
+          "requires": [
+            "heat.on",
+            "sauce.thickened",
+            "potato.reserved",
+            "eggplant.reserved",
+            "pepper.fried"
+          ],
+          "effects": [
+            {
+              "predicate": "dish.combined",
+              "value": true
+            }
+          ],
+          "constructor": "combineThreeFresh"
+        },
+        {
+          "id": "step-12",
+          "sequence": 12,
+          "formalAction": "plateThreeFresh",
+          "requires": [
+            "heat.on",
+            "dish.combined"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plateThreeFresh"
+        }
+      ]
+    },
+    {
+      "recipeId": "butter-pan-fried-shrimp",
+      "scope": "recipe-execution",
+      "namespace": "LeanToCook.ButterShrimp",
+      "module": "LeanToCook.Recipes.ButterShrimp.Model",
+      "plan": "butterShrimpPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareShrimp",
+          "requires": [
+            "shrimp.present"
+          ],
+          "effects": [
+            {
+              "predicate": "shrimp.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepareShrimp"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "mixShrimpSauce",
+          "requires": [
+            "shrimp.prepared"
+          ],
+          "effects": [
+            {
+              "predicate": "sauce.mixed",
+              "value": true
+            }
+          ],
+          "constructor": "mixShrimpSauce"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "heatShrimpOil",
+          "requires": [
+            "heat.off",
+            "sauce.mixed"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "pan.hot",
+              "value": true
+            },
+            {
+              "predicate": "oil.hot",
+              "value": true
+            }
+          ],
+          "constructor": "heatShrimpOil"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "panFryShrimp",
+          "requires": [
+            "heat.on",
+            "oil.hot",
+            "shrimp.prepared"
+          ],
+          "effects": [
+            {
+              "predicate": "shrimp.seared",
+              "value": true
+            }
+          ],
+          "constructor": "panFryShrimp"
+        },
+        {
+          "id": "step-05",
+          "sequence": 5,
+          "formalAction": "butterSauceShrimp",
+          "requires": [
+            "heat.on",
+            "shrimp.seared",
+            "sauce.mixed"
+          ],
+          "effects": [
+            {
+              "predicate": "shrimp.buttered",
+              "value": true
+            },
+            {
+              "predicate": "dish.seasoned",
+              "value": true
+            }
+          ],
+          "constructor": "butterSauceShrimp"
+        },
+        {
+          "id": "step-06",
+          "sequence": 6,
+          "formalAction": "reduceShrimpSauce",
+          "requires": [
+            "heat.on",
+            "shrimp.buttered",
+            "dish.seasoned"
+          ],
+          "effects": [
+            {
+              "predicate": "shrimp.sauceReduced",
+              "value": true
+            }
+          ],
+          "constructor": "reduceShrimpSauce"
+        },
+        {
+          "id": "step-07",
+          "sequence": 7,
+          "formalAction": "plateShrimp",
+          "requires": [
+            "heat.on",
+            "shrimp.sauceReduced"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plateShrimp"
+        }
+      ]
+    },
+    {
+      "recipeId": "corn-rib-soup",
+      "scope": "recipe-execution",
+      "namespace": "LeanToCook.CornRibSoup",
+      "module": "LeanToCook.Recipes.CornRibSoup.Model",
+      "plan": "cornRibSoupPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "cutSoupIngredients",
+          "requires": [
+            "ribs.present",
+            "corn.present",
+            "carrot.present"
+          ],
+          "effects": [
+            {
+              "predicate": "soupIngredients.cut",
+              "value": true
+            }
+          ],
+          "constructor": "cutSoupIngredients"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "blanchRibs",
+          "requires": [
+            "heat.off",
+            "soupIngredients.cut"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "ribs.blanched",
+              "value": true
+            }
+          ],
+          "constructor": "blanchRibs"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "searRibs",
+          "requires": [
+            "heat.on",
+            "ribs.blanched"
+          ],
+          "effects": [
+            {
+              "predicate": "pan.hot",
+              "value": true
+            },
+            {
+              "predicate": "ribs.seared",
+              "value": true
+            }
+          ],
+          "constructor": "searRibs"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "addBoilingWater",
+          "requires": [
+            "heat.on",
+            "ribs.seared"
+          ],
+          "effects": [
+            {
+              "predicate": "broth.boiling",
+              "value": true
+            }
+          ],
+          "constructor": "addBoilingWater"
+        },
+        {
+          "id": "step-05",
+          "sequence": 5,
+          "formalAction": "simmerCorn",
+          "requires": [
+            "heat.on",
+            "broth.boiling"
+          ],
+          "effects": [
+            {
+              "predicate": "corn.simmered",
+              "value": true
+            }
+          ],
+          "constructor": "simmerCorn"
+        },
+        {
+          "id": "step-06",
+          "sequence": 6,
+          "formalAction": "simmerCarrot",
+          "requires": [
+            "heat.on",
+            "corn.simmered"
+          ],
+          "effects": [
+            {
+              "predicate": "carrot.simmered",
+              "value": true
+            },
+            {
+              "predicate": "soup.simmered",
+              "value": true
+            }
+          ],
+          "constructor": "simmerCarrot"
+        },
+        {
+          "id": "step-07",
+          "sequence": 7,
+          "formalAction": "seasonSoup",
+          "requires": [
+            "heat.on",
+            "soup.simmered"
+          ],
+          "effects": [
+            {
+              "predicate": "dish.seasoned",
+              "value": true
+            }
+          ],
+          "constructor": "seasonSoup"
+        },
+        {
+          "id": "step-08",
+          "sequence": 8,
+          "formalAction": "plateSoup",
+          "requires": [
+            "heat.on",
+            "dish.seasoned",
+            "carrot.simmered"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plateSoup"
+        }
+      ]
+    },
+    {
+      "recipeId": "steamed-sea-bass",
+      "scope": "recipe-execution",
+      "namespace": "LeanToCook.SteamedSeaBass",
+      "module": "LeanToCook.Recipes.SteamedSeaBass.Model",
+      "plan": "steamedSeaBassPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "cutAromatics",
+          "requires": [
+            "fish.present"
+          ],
+          "effects": [
+            {
+              "predicate": "aromatics.cut",
+              "value": true
+            }
+          ],
+          "constructor": "cutAromatics"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "scoreMarinateFish",
+          "requires": [
+            "aromatics.cut"
+          ],
+          "effects": [
+            {
+              "predicate": "fish.marinated",
+              "value": true
+            }
+          ],
+          "constructor": "scoreMarinateFish"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "rackFish",
+          "requires": [
+            "fish.marinated",
+            "aromatics.cut"
+          ],
+          "effects": [
+            {
+              "predicate": "fish.racked",
+              "value": true
+            }
+          ],
+          "constructor": "rackFish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "heatSteamer",
+          "requires": [
+            "heat.off",
+            "fish.racked"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "steamer.hot",
+              "value": true
+            }
+          ],
+          "constructor": "heatSteamer"
+        },
+        {
+          "id": "step-05",
+          "sequence": 5,
+          "formalAction": "steamFish",
+          "requires": [
+            "heat.on",
+            "steamer.hot",
+            "fish.racked"
+          ],
+          "effects": [
+            {
+              "predicate": "fish.steamed",
+              "value": true
+            }
+          ],
+          "constructor": "steamFish"
+        },
+        {
+          "id": "step-06",
+          "sequence": 6,
+          "formalAction": "transferFish",
+          "requires": [
+            "heat.on",
+            "fish.steamed"
+          ],
+          "effects": [
+            {
+              "predicate": "fish.transferred",
+              "value": true
+            }
+          ],
+          "constructor": "transferFish"
+        },
+        {
+          "id": "step-07",
+          "sequence": 7,
+          "formalAction": "seasonFish",
+          "requires": [
+            "fish.transferred",
+            "aromatics.cut"
+          ],
+          "effects": [
+            {
+              "predicate": "dish.seasoned",
+              "value": true
+            }
+          ],
+          "constructor": "seasonFish"
+        },
+        {
+          "id": "step-08",
+          "sequence": 8,
+          "formalAction": "heatFinishingOil",
+          "requires": [
+            "heat.on",
+            "dish.seasoned"
+          ],
+          "effects": [
+            {
+              "predicate": "oil.hot",
+              "value": true
+            }
+          ],
+          "constructor": "heatFinishingOil"
+        },
+        {
+          "id": "step-09",
+          "sequence": 9,
+          "formalAction": "pourHotOilPlate",
+          "requires": [
+            "heat.on",
+            "oil.hot",
+            "fish.transferred",
+            "dish.seasoned"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "fish.finished",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "pourHotOilPlate"
+        }
+      ]
+    },
+    {
+      "recipeId": "simple-braised-pork",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "seaweed-egg-drop-soup",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "microwave-sunny-side-egg",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "perfect-boiled-egg",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "egg-fried-rice",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "zhajiang-noodles",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "frozen-dumplings",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "air-fryer-chicken-wings",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "lemon-water",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "milk-tea",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "chili-oil",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "sweet-sour-sauce",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "baked-egg-tarts",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    },
+    {
+      "recipeId": "coffee-coconut-jelly",
+      "scope": "generic-four-stage",
+      "namespace": "LeanToCook.CatalogCases",
+      "module": "LeanToCook.CatalogCases.Model",
+      "plan": "catalogPlan",
+      "steps": [
+        {
+          "id": "step-01",
+          "sequence": 1,
+          "formalAction": "prepareCatalogCase",
+          "requires": [
+            "case.present",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "case.prepared",
+              "value": true
+            }
+          ],
+          "constructor": "prepare"
+        },
+        {
+          "id": "step-02",
+          "sequence": 2,
+          "formalAction": "processCatalogCase",
+          "requires": [
+            "case.prepared",
+            "heat.off"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.off",
+              "value": false
+            },
+            {
+              "predicate": "heat.on",
+              "value": true
+            },
+            {
+              "predicate": "case.processed",
+              "value": true
+            }
+          ],
+          "constructor": "process"
+        },
+        {
+          "id": "step-03",
+          "sequence": 3,
+          "formalAction": "finishCatalogCase",
+          "requires": [
+            "case.processed",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "case.finished",
+              "value": true
+            }
+          ],
+          "constructor": "finish"
+        },
+        {
+          "id": "step-04",
+          "sequence": 4,
+          "formalAction": "plateCatalogCase",
+          "requires": [
+            "case.finished",
+            "heat.on"
+          ],
+          "effects": [
+            {
+              "predicate": "heat.on",
+              "value": false
+            },
+            {
+              "predicate": "heat.off",
+              "value": true
+            },
+            {
+              "predicate": "dish.plated",
+              "value": true
+            }
+          ],
+          "constructor": "plate"
+        }
+      ]
+    }
+  ]
+}

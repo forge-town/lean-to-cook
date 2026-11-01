@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "leanVersion": {
+      "type": "string",
+      "pattern": "^4\\.\\d+\\.\\d+$"
+    },
+    "allowedAxioms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "subjects": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "source-structure",
+              "recipe-execution",
+              "generic-four-stage",
+              "catalog-data"
+            ]
+          },
+          "namespace": {
+            "type": "string",
+            "pattern": "^LeanToCook(?:\\.[A-Za-z][A-Za-z0-9_]*)+$"
+          },
+          "modules": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^LeanToCook(?:\\.[A-Za-z][A-Za-z0-9_]*)+$"
+            }
+          },
+          "sourceDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "review": {
+            "type": "string",
+            "const": "unchecked"
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "commit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "commit",
+              "path"
+            ],
+            "additionalProperties": false
+          },
+          "claims": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "proof": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+                },
+                "parameters": {
+                  "type": "string"
+                },
+                "expression": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "proof",
+                "parameters",
+                "expression"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "scope",
+          "namespace",
+          "modules",
+          "sourceDigest",
+          "review",
+          "claims"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "leanVersion",
+    "allowedAxioms",
+    "subjects"
+  ],
+  "additionalProperties": false
+}

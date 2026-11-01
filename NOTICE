@@ -1,0 +1,18 @@
+Lean to Cook
+Copyright 2026 Lean to Cook contributors
+
+Original project code, Lean proofs, and documentation are licensed under the
+Apache License, Version 2.0. See LICENSE.
+
+Third-party material retains its original licensing terms:
+
+- HowToCook recipe and image snapshot: Anduin2017/HowToCook.
+  Source: https://github.com/Anduin2017/HowToCook
+  License: Unlicense.
+  See content/how-to-cook/LICENSE and content/how-to-cook/UPSTREAM.md.
+
+- Microsoft Fluent ingredient icons: Microsoft Corporation.
+  License: MIT.
+  See apps/web/public/ingredient-icons/fluent-flat/LICENSE.txt.
+
+Dependencies retain the licenses supplied by their respective authors.

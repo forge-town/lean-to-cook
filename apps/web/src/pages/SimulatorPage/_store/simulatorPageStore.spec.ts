@@ -1,0 +1,31 @@
+import { expect, it } from "vitest";
+import { recipeCatalog } from "@repo/schemas";
+import { createSimulatorPageStore } from "./simulatorPageStore";
+const recipe = recipeCatalog.find((r) => r.id === "lemon-water")!;
+it("keeps validated forward snapshots when reviewing and only extends the frontier once", () => {
+  const store = createSimulatorPageStore({ recipe });
+  [0, 1, 2].forEach(() => store.getState().handleNextButtonClick());
+  const history = store.getState().history;
+  const third = store.getState().currentSnapshot;
+  store.getState().handlePreviousButtonClick();
+  store.getState().handlePreviousButtonClick();
+  expect(store.getState().currentSnapshot.stepIndex).toBe(1);
+  expect(store.getState().history).toBe(history);
+  store.getState().handleNextButtonClick();
+  store.getState().handleNextButtonClick();
+  expect(store.getState().currentSnapshot).toBe(third);
+  expect(store.getState().history).toBe(history);
+  store.getState().handleNextButtonClick();
+  expect(store.getState().history).toHaveLength(5);
+  expect(store.getState().currentSnapshot.stepIndex).toBe(4);
+});
+it("drops the visited snapshots on reset", () => {
+  const store = createSimulatorPageStore({ recipe });
+  store.getState().handleNextButtonClick();
+  store.getState().handleNextButtonClick();
+  store.getState().handlePreviousButtonClick();
+  store.getState().handleResetButtonClick();
+  expect(store.getState().currentSnapshot.stepIndex).toBe(0);
+  expect(store.getState().history).toHaveLength(1);
+  expect(store.getState().blockedTransition).toBeNull();
+});

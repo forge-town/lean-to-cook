@@ -1,0 +1,68 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        ".output/**",
+        "dist/**"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "^test"
+      ],
+      "outputs": []
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ]
+    },
+    "check-types": {
+      "dependsOn": [
+        "^check-types"
+      ]
+    },
+    "quality": {
+      "dependsOn": [
+        "^quality"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@repo/models#quality": {
+      "cache": false,
+      "dependsOn": [
+        "^quality"
+      ]
+    },
+    "@repo/models#test": {
+      "cache": false,
+      "dependsOn": [
+        "^test"
+      ]
+    }
+  },
+  "globalEnv": [
+    "DATABASE_URL",
+    "API_PORT",
+    "ADMIN_ORIGIN",
+    "ADMIN_SESSION_SECRET",
+    "ADMIN_PASSWORD_HASH_BASE64"
+  ],
+  "globalDependencies": [
+    ".env"
+  ]
+}
